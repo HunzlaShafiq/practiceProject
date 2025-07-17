@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
@@ -10,7 +11,6 @@ import 'package:practice_project/Views/notes_app_view.dart';
 import 'package:practice_project/services/firebase_notification_services.dart';
 import 'firebase_options.dart';
 
-final FirebaseNotificationServices _notificationServices = FirebaseNotificationServices();
 
 void main() async{
 
@@ -44,8 +44,11 @@ void main() async{
 @pragma('vm:entry-point')
 Future<void> backgroundNotificationHandle(RemoteMessage message) async{
   await Firebase.initializeApp();
+  if (kDebugMode) {
+    print(message.notification!.title.toString());
+  }
 
-  await _notificationServices.showNotification(message);
+  await FirebaseNotificationServices().showNotification(message);
 }
 
 

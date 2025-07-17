@@ -31,8 +31,8 @@ class _NotesAppViewState extends State<NotesAppView> {
 
     notificationServices.getNotificationPermission();
     notificationServices.getFirebaseToken();
-    notificationServices.initLocalNotification();
-    notificationServices.initFirebaseNotification();
+    notificationServices.initFirebaseNotification(context);
+    notificationServices.setupInteractMessage(context);
 
   }
 

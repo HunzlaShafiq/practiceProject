@@ -1,8 +1,12 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:app_settings/app_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:practice_project/Views/notification_view.dart';
 
 class FirebaseNotificationServices{
 
@@ -53,7 +57,7 @@ class FirebaseNotificationServices{
 
   }
 
-  void initLocalNotification() async{
+  void initLocalNotification(BuildContext context,RemoteMessage message) async{
 
     final AndroidInitializationSettings androidInitializationSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -64,7 +68,13 @@ class FirebaseNotificationServices{
       iOS: iosInitializationSettings,
     );
 
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    await _flutterLocalNotificationsPlugin.initialize(
+        initializationSettings,
+        onDidReceiveNotificationResponse: (payload){
+          handleOnClickNotification(context, message);
+        },
+
+    );
 
 
   }
@@ -105,10 +115,47 @@ class FirebaseNotificationServices{
 
   }
 
-  Future<void> initFirebaseNotification() async{
+  Future<void> initFirebaseNotification(context) async{
     FirebaseMessaging.onMessage.listen((message){
+
+      if(Platform.isAndroid){
+        initLocalNotification(context, message);
       showNotification(message);
+      }else{
+        showNotification(message);
+      }
+
+
     });
+
+
+
+  }
+
+  void handleOnClickNotification(BuildContext context, RemoteMessage message){
+
+    if(message.data['type']=='message'){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationView()));
+    }
+
+  }
+
+  Future<void> setupInteractMessage(context) async{
+
+    //handle when app is killed
+    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+
+    if(initialMessage!.toString().isNotEmpty){
+      handleOnClickNotification(context, initialMessage);
+    }
+
+    //handle when is open but in background
+
+    FirebaseMessaging.onMessageOpenedApp.listen((message){
+
+      handleOnClickNotification(context, message);
+    });
+
   }
 
 }
