@@ -1,4 +1,4 @@
-# practice_project
+# practice project
 
 
 
