@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:practice_project/Models/students_model/students_model.dart';
 import 'package:practice_project/Views/notes_app_view.dart';
 import 'package:practice_project/services/firebase_notification_services.dart';
+
 import 'firebase_options.dart';
+
 
 
 void main() async{
@@ -62,7 +64,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Notifications',
       debugShowCheckedModeBanner: false,
       home: NotesAppView(),
     );
