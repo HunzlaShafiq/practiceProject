@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_project/Models/students_model/students_model.dart';
 import 'package:practice_project/Views/notes_app_view.dart';
+import 'package:practice_project/Views/profile_View.dart';
 import 'package:practice_project/services/firebase_notification_services.dart';
 
 import 'firebase_options.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Notifications',
       debugShowCheckedModeBanner: false,
-      home: NotesAppView(),
+      home: ProfileView(),
     );
   }
 }
