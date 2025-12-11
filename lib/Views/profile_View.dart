@@ -83,8 +83,8 @@ class _ProfileViewState extends State<ProfileView> with SingleTickerProviderStat
                   radius: 25,
                   backgroundImage: NetworkImage("https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250")
                 ),
-                title: Text("Hunzla Shafiq"),
-                subtitle: Text("@hunzla132",style: TextStyle(color: Colors.grey.shade500),),
+                title: Text("Brooklyn Sorn"),
+                subtitle: Text("@Brooklyn",style: TextStyle(color: Colors.grey.shade500),),
               ),
               const SizedBox(height: 10,),
               Padding(
