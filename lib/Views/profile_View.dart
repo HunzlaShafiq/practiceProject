@@ -1,8 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive/hive.dart';
 import 'package:practice_project/Utils/Components/posts_grid.dart';
 
 class ProfileView extends StatefulWidget {
@@ -14,13 +11,6 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> with SingleTickerProviderStateMixin{
 
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController =TabController(length: 3, vsync: this);
-  }
 
   int selectedIndex = 0;
 
@@ -204,7 +194,8 @@ class _ProfileViewState extends State<ProfileView> with SingleTickerProviderStat
                   Row(
                     spacing: 5,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(tabs.length, (index) {
+                    children: List.generate(
+                        tabs.length, (index) {
                       final bool isSelected = selectedIndex == index;
           
                       return Expanded(
