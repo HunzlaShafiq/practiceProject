@@ -203,7 +203,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 10,),
-
             Expanded(
               child: SingleChildScrollView(
 
@@ -211,11 +210,10 @@ class _HomePageState extends State<HomePage> {
                   spacing: 10,
                 children: [
                   SharePostSection(controller: postShareController),
-                  const SizedBox(height: 10,),
                   PostContainer(
                     profileURL:"https://i.pravatar.cc/250?u=mail@ashallendesign.co.uk",
                     timeAgo: '2 hr ago',
-                    description:"A nature wanderer experiences a thousand worlds - but the one who never steps outside feels only a single view of life.",
+                    description:"A nature wanderer experiences a thousand worlds.",
                     postURL:'assets/nature1.png', userName: "Tracy Ritchie",),
                   PostContainer(
                     profileURL:"https://robohash.org/mail@ashallendesign.co.uk",

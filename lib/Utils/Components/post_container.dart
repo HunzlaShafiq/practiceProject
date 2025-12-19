@@ -66,7 +66,7 @@ class PostContainer extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  postURL,height: 110,
+                  postURL,height: 100,
                   width: double.infinity,
                   fit: BoxFit.cover,)
             ),
@@ -88,7 +88,7 @@ class PostContainer extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20,)
+          const SizedBox(height: 10,)
         ],
 
       ),
