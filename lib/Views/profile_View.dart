@@ -252,7 +252,7 @@ class _ProfileViewState extends State<ProfileView> with SingleTickerProviderStat
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 100),
 
           
           
