@@ -131,8 +131,8 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
 
               const SizedBox(height: 30,),
-              Image.network(
-                  "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+              Image.asset(
+                  "assets/bag.png",
                 height: 300,
                 width: 300,
 
