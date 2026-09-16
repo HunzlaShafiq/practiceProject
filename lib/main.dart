@@ -7,12 +7,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:practice_project/Models/students_model/students_model.dart';
+import 'package:practice_project/Providers/shop_provider.dart';
 import 'package:practice_project/Views/Shop_App/onboarding_view.dart';
 import 'package:practice_project/Views/home_page.dart';
 import 'package:practice_project/Views/main_page.dart';
 import 'package:practice_project/Views/notes_app_view.dart';
 import 'package:practice_project/Views/profile_View.dart';
 import 'package:practice_project/services/firebase_notification_services.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 
@@ -50,11 +52,9 @@ void main() async{
 @pragma('vm:entry-point')
 Future<void> backgroundNotificationHandle(RemoteMessage message) async{
   await Firebase.initializeApp();
-  if (kDebugMode) {
-    print(message.notification!.title.toString());
-  }
 
   await FirebaseNotificationServices().showNotification(message);
+  FirebaseNotificationServices().getFirebaseToken();
 }
 
 
@@ -67,11 +67,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Notifications',
-      debugShowCheckedModeBanner: false,
-      home:OnboardingView(),
-    );
+    return
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ShopProvider()),
+        ],
+        child: MaterialApp(
+          title: 'Notifications',
+          debugShowCheckedModeBanner: false,
+          home:OnboardingView(),
+        ),
+      )
+      ;
   }
 }
 
